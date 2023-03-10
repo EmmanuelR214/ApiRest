@@ -1,0 +1,61 @@
+###
+POST http://localhost:8000/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "nombre": "Gize",
+    "app": "si no queda ",
+    "apm": "te violo.",
+    "telefono": "7712635896",
+    "pais": "Estados unidos",
+    "Estado": "Texas",
+    "Ciudad": "Texas",
+    "colonia": "cruz green",
+    "calle": "Luis Donaldo Colosio",
+    "descripcion": "Al lado de mi casita",
+    "correo": "pedrovalles213@gmial.com",
+    "contraseña": "pedro4321"
+}
+
+###
+GET http://localhost:8000/api/users HTTP/1.1
+
+###
+GET http://localhost:8000/api/users/640a7c365a5f554278fa3567 HTTP/1.1
+
+###
+PUT  http://localhost:8000/api/users/64089b58527264d8837f3bb9 HTTP/1.1
+Content-Type: application/json
+
+{
+    "telefono": "7715632015",
+    "pais": "Mexico",
+    "Estado": "Hidalgo",
+    "Ciudad": "Huejutla",
+    "colonia": "cruz verde",
+    "calle": "Luis Donaldo Colosio",
+    "descripcion": "Al lado de mi casita"
+}
+
+###
+DELETE  http://localhost:8000/api/users/64089ed2506e73b6a6084125 HTTP/1.1
+
+
+
+
+
+
+###
+POST http://localhost:8000/api/products HTTP/1.1
+Content-Type: application/json
+
+{
+    "Productos": "Chocolate",
+    "descripción": "si no queda ",
+    "precio": "5",
+    "Stock": "20",
+    "imagen": "http://imagne",
+    "unidad": "Kg",
+    "presentacion": "Caja",
+    "fecha_creación": "02/02/2023"
+}
