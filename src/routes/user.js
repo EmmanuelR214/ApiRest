@@ -21,11 +21,19 @@ router.get('/users', (req, res) => {
     .catch((error) => res.json({ message: error }));
 })
 
-//encontrar un usuario especifico
+//encontrar un usuario especifico por id
 router.get('/users/:id', (req, res) => {
   const {id} = req.params
   userSchema
     .findById(id)
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
+})
+
+//encontrar el correo especifico
+router.get('/users/email/:correo', (req, res) => {
+  userSchema
+    .findOne({correo: req.params.correo})
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 })
