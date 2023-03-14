@@ -3,7 +3,6 @@ const mongoose = require("mongoose")
 require("dotenv").config()
 const userRoute = require("./src/routes/user")
 const productsRoute = require("./src/routes/productos")
-const iotRouter = requiere("./src/routes/Iot")
 const cors = require("cors")
 
 
@@ -15,7 +14,6 @@ app.use(cors())
 app.use(express.json())
 app.use('/api', userRoute);
 app.use('/api', productsRoute)
-app.use('/api', iotRouter)
 
 //Rutassto
 app.get("/", (req, res) => {
