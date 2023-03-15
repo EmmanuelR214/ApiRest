@@ -23,9 +23,9 @@ router.get('/iot', (req, res) => {
 //actualizar un usuario
 router.put('/iot/:id', (req, res) => {
   const {id} = req.params
-  const {telefono, Estado, Ciudad, colonia, calle, descripcion} = req.body
+  const {ServoPuerta, ServoSeguro} = req.body
   userSchema
-    .updateOne({_id: id}, { $set: {telefono, Estado, Ciudad, colonia, calle, descripcion}})
+    .updateOne({_id: id}, { $set: {ServoPuerta, ServoSeguro}})
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 })
