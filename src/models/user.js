@@ -14,34 +14,6 @@ const userSchema =  mongoose.Schema({
     type: String,
     require: true
   },
-  telefono:{
-  type: Number,
-  require: false
-  },
-  pais:{
-    type: String,
-    require: false
-  },
-  Estado:{
-    type: String,
-    require: false
-  },
-  Ciudad:{
-    type: String,
-    require: false
-  },
-  colonia:{
-    type: String,
-    require: false
-  },
-  calle:{
-    type: String,
-    require: false
-  },
-  descripcion:{
-    type: String,
-    require: false
-  },
   correo:{
     type: String,
     require: true
