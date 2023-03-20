@@ -4,7 +4,7 @@ const userSchema = require('../models/Iot')
 const router = express.Router()
 
 //Insertar un dato
-router.post('/iot', (req, res) => {
+router.post('/iots', (req, res) => {
   const user = userSchema(req.body)
   user
     .save()
@@ -13,7 +13,7 @@ router.post('/iot', (req, res) => {
 })
 
 //mostrar todos los datos
-router.get('/iot', (req, res) => {
+router.get('/iots', (req, res) => {
     userSchema
         .find()
         .then((data) => res.json(data))
@@ -21,7 +21,7 @@ router.get('/iot', (req, res) => {
 })
 
 //actualizar un usuario
-router.put('/iot/:id', (req, res) => {
+router.put('/iots/:id', (req, res) => {
   const {id} = req.params
   const {ServoPuerta, ServoSeguro, Temperatura, Humedad, Hall} = req.body
   userSchema
