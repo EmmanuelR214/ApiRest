@@ -1,9 +1,6 @@
 const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
-    Tarjeta: {
-        type: String,
-    },
     ServoPuerta: {
         type: Number,
     },
