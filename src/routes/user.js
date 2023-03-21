@@ -33,13 +33,13 @@ router.get('/users/:id', (req, res) => {
 //encontrar el correo especifico
 router.get('/users/email/:email', (req, res) => {
   userSchema
-    .findOne({correo: req.params.correo})
+    .findOne({email: req.params.email})
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 })
 
 //encontrar un usuario especifico por user
-router.get('/users/use/:usuario', (req, res) => {
+router.get('/users/usuario/:usuario', (req, res) => {
   userSchema
     .findOne({usuario: req.params.usuario})
     .then((data) => res.json(data))
