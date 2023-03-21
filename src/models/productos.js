@@ -29,10 +29,6 @@ const userSchema = mongoose.Schema({
         type: String,
         required:true
     },
-    fecha_creación:{
-        type: String,
-        required:true
-    },
 });
 
 module.exports = mongoose.model('productos', userSchema);
