@@ -2,17 +2,25 @@ const { default: mongoose } = require("mongoose")
 const mongo = require("mongoose")
 
 const userSchema =  mongoose.Schema({
+  usuario:{
+    type: String,
+    requiere: true
+  },
   nombre: {
     type: String,
     require: true
   },
-  app: {
+  apPaterno: {
     type: String,
     require: true
   },
-  apm: {
+  apMaterno: {
     type: String,
     require: true
+  },
+  Telefono: {
+    type: String,
+    requiere: true
   },
   email:{
     type: String,
