@@ -41,9 +41,19 @@ router.get('/users/email/:correo', (req, res) => {
 //actualizar un usuario
 router.put('/users/:id', (req, res) => {
   const {id} = req.params
-  const {nombre, app, apm, correo, pass} = req.body
+  const {nombre, apPaterno, apMaterno, Telefono} = req.body
   userSchema
-    .updateOne({_id: id}, { $set: {nombre, app, apm, correo, pass}})
+    .updateOne({_id: id}, { $set: {nombre, apPaterno, apMaterno, Telefono}})
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
+})
+
+//actualizar contraseña
+router.put('/users/pass/:id', (req, res) => {
+  const {id} = req.params
+  const {password} = req.body
+  userSchema
+    .updateOne({_id: id}, { $set: {password}})
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 })
