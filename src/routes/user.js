@@ -39,7 +39,7 @@ router.get('/users/email/:email', (req, res) => {
 })
 
 //encontrar un usuario especifico por user
-router.get('/users/usuario/:usuario', (req, res) => {
+router.get('/users/user/:usuario', (req, res) => {
   userSchema
     .findOne({correo: req.params.usuario})
     .then((data) => res.json(data))
