@@ -4,6 +4,7 @@ require("dotenv").config()
 const userRoute = require("./src/routes/user")
 const productsRoute = require("./src/routes/productos")
 const iotRouter = require('./src/routes/Iot')
+const ventaRouter = require('./src/routes/venta')
 const cors = require("cors")
 
 
@@ -16,6 +17,7 @@ app.use(express.json())
 app.use('/api', userRoute);
 app.use('/api', productsRoute)
 app.use('/api', iotRouter)
+app.use('/api', ventaRouter)
 
 //Rutassto
 app.get("/", (req, res) => {
