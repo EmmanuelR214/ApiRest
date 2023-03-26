@@ -1,51 +1,6 @@
 const express =  require("express")
 const userSchema = require('../models/user')
-const bcrypt = require('bcryptjs');
 const router = express.Router()
-
-
-function encryptPassword(password) {
-  const salt = bcrypt.genSaltSync(10);
-  return bcrypt.hashSync(password, salt);
-}
-
-
-//Crear usuarios
-router.post('/users', async (req, res) => {
-  const { usuario, nombre, apPaterno, apMaterno, Telefono, email, password} = req.body;
-  const hashedPassword = encryptPassword(password);
-  const user = new userSchema({ 
-    usuario, 
-    nombre, 
-    apPaterno,
-    apMaterno,
-    Telefono,
-    email,
-    password: hashedPassword 
-  });
-  try {
-    await user.save();
-    res.status(201).json({ message: 'Usuario Creado' });
-  } catch (err) {
-    res.status(400).json({ message: 'Valio queso mano' });
-  }
-})
-
-//Login
-router.post('/users/login', async (req, res) => {
-  // Validaciond e existencia
-  const user = await userSchema.findOne({usuario: req.body.usuario})
-    if(!user) return res.status(400).json({error: 'Usuario no encontrado'})
-  // Validacion de password en la base de datos
-  const validPassword = await bcrypt.compare(req.body.password, user.password)
-    if(!validPassword) return res.status(400).json({error: 'Constraseña invalida'})
-  
-  // Colocando el token en el header y el cuerpo de la respuesta
-  res.json({
-      error: null,
-      message: 'Bienvenido'
-  })
-})
 
 //mostrar todos los datos
 
