@@ -11,7 +11,7 @@ function encryptPassword(password) {
 
 
 //Crear usuarios
-router.post('/create/user', async (req, res) => {
+router.post('/users', async (req, res) => {
   const { usuario, nombre, apPaterno, apMaterno, Telefono, email, password} = req.body;
   const hashedPassword = encryptPassword(password);
   const user = new userSchema({ 
@@ -46,6 +46,8 @@ router.post('/users/login', async (req, res) => {
       message: 'Bienvenido'
   })
 })
+
+
 
 //mostrar todos los datos
 
