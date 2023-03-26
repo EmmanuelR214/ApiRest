@@ -28,7 +28,7 @@ router.post('/venta', async (req, res) => {
 });
 
 //mostrar todos los datos
-router.get('/venta/total', (req, res) => {
+router.get('/venta', (req, res) => {
     ventas
         .find()
         .then((data) => res.json(data))
