@@ -12,13 +12,18 @@ router.post("/products", (req, res) => {
     .catch((error) => res.json({ message: error }));
 });
 
-// get all productos
-router.get("/products", (req, res) => {
-  userSchema
-    .find()
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
-});
+
+// mostrar todos los datos referenciados
+//mostrar todos los productos referenciados
+router.get('/products', async (req, res) =>{
+  try {
+    const productos = await userSchema.find().populate('unidad', 'categoria')
+    res.json(productos)
+  } catch (error) {
+    console.log('ocurrio un error ', error)
+    res.status(505).json({message: 'Error al traer los datos'})
+  }
+})
 
 // get a producto
 router.get("/products/:id", (req, res) => {
@@ -49,3 +54,14 @@ router.put("/products/:id", (req, res) => {
 });
 
 module.exports = router;
+
+
+/*
+// get all productos
+router.get("/products", (req, res) => {
+  userSchema
+    .find()
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
+});
+*/
