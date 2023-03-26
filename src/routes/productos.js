@@ -43,12 +43,12 @@ router.delete("/products/:id", (req, res) => {
     .catch((error) => res.json({ message: error }));
 });
 
-// update a productos
-router.put("/products/:id", (req, res) => {
+// actualiza a stock con id
+router.put("/products/stock/:id", (req, res) => {
   const { id } = req.params;
-  const { Producto, descripción, precio, Stock,imagen,unidad,presentacion,fecha_creación} = req.body;
+  const {Stock} = req.body;
   userSchema
-    .updateOne({ _id: id }, { $set: { Producto, descripción, precio, Stock,imagen,unidad,presentacion,fecha_creación}})
+    .updateOne({ _id: id }, { $set: {Stock}})
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
