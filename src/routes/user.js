@@ -47,7 +47,10 @@ router.post('/users/login', async (req, res) => {
   })
 })
 
+
+
 //mostrar todos los datos
+
 router.get('/users', (req, res) => {
   userSchema
     .find()
