@@ -12,9 +12,28 @@ router.post("/products", (req, res) => {
     .catch((error) => res.json({ message: error }));
 });
 
-
-// mostrar todos los datos referenciados
-
+//mostrar todos los productos referenciados
+router.get("/products/categoria/:categoria", async (req, res) => {
+  const categoria = req.params.categoria
+  userSchema
+    .aggregate([
+      {
+        $lookup: {
+          from: "categoria",
+          localField: "categoria",
+          foreignField: "_id",
+          as:"categoria"
+        }
+      },
+      {
+        $match: {
+          "categoria.Nombrecategoria": categoria
+        }
+      }
+    ])
+    .then((data) => res.json(data))
+    .catch((error)=> res.json({message: 'ocurrio un error', error}))
+});
 
 // get a producto
 router.get("/products/:id", (req, res) => {
