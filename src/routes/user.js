@@ -22,9 +22,9 @@ function encryptPassword(password) {
 
 //Crear usuarios
 router.post('/users', async (req, res) => {
-  const { usuario, nombre, apPaterno, apMaterno, Telefono, email, password} = req.body;
+  const { usuario, nombre, apPaterno, apMaterno, email, password} = req.body;
   
-  const {error} = valRegistro.validate(usuario, nombre, apPaterno, apMaterno, Telefono, email, password)
+  const {error} = valRegistro.validate(usuario, nombre, apPaterno, apMaterno, email, password)
   
   if (error) {
     return res.status(400).json(
@@ -44,7 +44,6 @@ router.post('/users', async (req, res) => {
     nombre, 
     apPaterno,
     apMaterno,
-    Telefono,
     email,
     password: hashedPassword 
   });
