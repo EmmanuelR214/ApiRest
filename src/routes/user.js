@@ -34,10 +34,10 @@ router.post('/users', async (req, res) => {
 //Login
 router.post('/users/login', async (req, res) => {
   // Validaciond e existencia
-  const user = await userSchema.findOne({usuario: req.body.usuario})
+  const user = await userSchema.findOne({usuario: req.body.user})
     if(!user) return res.status(400).json({error: 'Usuario no encontrado'})
   // Validacion de password en la base de datos
-  const validPassword = await bcrypt.compare(req.body.password, user.password)
+  const validPassword = await bcrypt.compare(req.body.password, user.pass)
     if(!validPassword) return res.status(400).json({error: 'Constraseña invalida'})
   
   // Colocando el token en el header y el cuerpo de la respuesta
