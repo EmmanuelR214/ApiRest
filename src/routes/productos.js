@@ -15,7 +15,7 @@ router.post("/products", (req, res) => {
 
 // mostrar todos los datos referenciados
 //mostrar todos los productos referenciados
-router.get('/products', async (req, res) =>{
+router.get('/products/referent', async (req, res) =>{
   try {
     const productos = await userSchema.find().populate('unidad', 'categoria')
     res.json(productos)
