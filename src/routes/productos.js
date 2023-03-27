@@ -12,6 +12,14 @@ router.post("/products", (req, res) => {
     .catch((error) => res.json({ message: error }));
 });
 
+// get all productos
+router.get("/products", (req, res) => {
+  userSchema
+    .find()
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
+});
+
 // get a producto
 router.get("/products/:id", (req, res) => {
   const { id } = req.params;
