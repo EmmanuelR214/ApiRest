@@ -2,6 +2,16 @@ const express =  require("express")
 const userSchema = require('../models/user')
 const router = express.Router()
 const bcrypt = require('bcryptjs');
+const Joi = require('@hapi/joi');
+
+const valRegistro = Joi.object({
+  usuario: Joi.string().min(3).max(255).required(),
+  nombre: Joi.string().min(4).max(255).required(),
+  apPaterno: Joi.string().min(4).max(255).required(),
+  apMaterno: Joi.string().min(4).max(255).required(),
+  email: Joi.string().min(6).max(255).required().email(),
+  password: Joi.string().min(8).max(1024).required()
+})
 
 
 function encryptPassword(password) {
@@ -13,6 +23,21 @@ function encryptPassword(password) {
 //Crear usuarios
 router.post('/users', async (req, res) => {
   const { usuario, nombre, apPaterno, apMaterno, Telefono, email, password} = req.body;
+  
+  const {error} = valRegistro.validate(usuario, nombre, apPaterno, apMaterno, Telefono, email, password)
+  
+  if (error) {
+    return res.status(400).json(
+        { error: error.details[0].message }
+    )
+  }
+  
+  const isEmailExist = await userSchema.findOne({ email: req.body.email });
+  if (isEmailExist) {
+      return res.status(400).json(
+          {error: 'El email ya existe, intenta con otro'}
+      )
+  }
   const hashedPassword = encryptPassword(password);
   const user = new userSchema({ 
     usuario, 
