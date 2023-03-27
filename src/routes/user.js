@@ -24,20 +24,6 @@ function encryptPassword(password) {
 router.post('/users', async (req, res) => {
   const { usuario, nombre, apPaterno, apMaterno, email, password} = req.body;
   
-  const {error} = valRegistro.validate(usuario, nombre, apPaterno, apMaterno, email, password)
-  
-  if (error) {
-    return res.status(400).json(
-        { error: error.details[0].message }
-    )
-  }
-  
-  const isEmailExist = await userSchema.findOne({ email: req.body.email });
-  if (isEmailExist) {
-      return res.status(400).json(
-          {error: 'El email ya existe, intenta con otro'}
-      )
-  }
   const hashedPassword = encryptPassword(password);
   const user = new userSchema({ 
     usuario, 
