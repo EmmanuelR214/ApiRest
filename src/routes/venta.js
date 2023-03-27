@@ -44,6 +44,17 @@ router.get('/venta/user/:usuario', (req, res) => {
 })
 
 
+router.get('/venta/:product_id', function(req, res) {
+  const product_id = req.params.usuario;
+
+  db.collection('Users').find({usuario: product_id}).toArray(function(err, result) {
+    if (err) throw err;
+
+    res.send(result);
+  });
+});
+
+
 module.exports = router
 
 /*
